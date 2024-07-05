@@ -14,11 +14,11 @@ const data = [
     { particular: "Intensve care unit(Icu)", chargeHead: "Hospital Charges", billFor: "ICU Charges" },
     
     // Nursing
-    { particular: "General Nursing", chargeHead: "Hospital Charges", billFor: "Nursing Charges" },
-    { particular: "Single Nursing", chargeHead: "Hospital Charges", billFor: "Nursing Charges" },
-    { particular: "Private Nursing", chargeHead: "Hospital Charges", billFor: "Nursing Charges" },
-    { particular: "Special Nursing", chargeHead: "Hospital Charges", billFor: "Nursing Charges" },
-    { particular: "Deluxe Nursing", chargeHead: "Hospital Charges", billFor: "Nursing Charges" },
+    { particular: "General Nursing", chargeHead: "Hospital Charges", billFor: "Nursing" },
+    { particular: "Single Nursing", chargeHead: "Hospital Charges", billFor: "Nursing" },
+    { particular: "Private Nursing", chargeHead: "Hospital Charges", billFor: "Nursing" },
+    { particular: "Special Nursing", chargeHead: "Hospital Charges", billFor: "Nursing" },
+    { particular: "Deluxe Nursing", chargeHead: "Hospital Charges", billFor: "Nursing" },
     
     // Icu Nursing
     { particular: "Micu Nursing", chargeHead: "Hospital Charges", billFor: "ICU Nursing Charges" },
