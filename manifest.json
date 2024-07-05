@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "Particular Finder",
+    "version": "1.0",
+    "description": "Find charge head and bill for a particular.",
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "saveicon.png",
+        "48": "saveicon.png",
+        "128": "saveicon.png"
+      }
+    },
+    "icons": {
+      "16": "saveicon.png",
+      "48": "saveicon.png",
+      "128": "saveicon.png"
+    }
+  }
+  
