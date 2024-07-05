@@ -27,7 +27,7 @@ const data = [
     { particular: "Icu, Hdu Nursing", chargeHead: "Hospital Charges", billFor: "ICU Nursing Charges" },
     
     // Consultation
-    { particular: "Consultation", chargeHead: "Consultant Charges", billFor: "Consulation / Visit" },
+    { particular: "Consultation", chargeHead: "Consultant Charges", billFor: "Consultation / Visit" },
     { particular: "Icu Conultation", chargeHead: "Consultant Charges", billFor: "ICU Consultant" },
     { particular: "Hdu,Sicu,Micu consultation", chargeHead: "Consultant Charges", billFor: "ICU Consultant" },
     { particular: "Intensivisit", chargeHead: "Consultant Charges", billFor: "Intensivisit Charges" },
