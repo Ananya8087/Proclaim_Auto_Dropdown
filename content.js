@@ -163,6 +163,31 @@ const data = [
   ];
 
 
+
+// Function to filter data based on input value
+const filterData = (inputValue) => {
+    return data.filter(item =>
+        item.particular.toLowerCase().includes(inputValue.toLowerCase())
+    );
+};
+
+// Function to update suggestions based on input value
+const updateSuggestions = (inputValue) => {
+    const filteredData = filterData(inputValue);
+    suggestionList.innerHTML = '';
+    filteredData.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.particular;
+        suggestionList.appendChild(option);
+    });
+};
+
+// Function to handle input change event
+const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    updateSuggestions(inputValue);
+};
+
 // Function to simulate a click event
 const simulateClick = (element) => {
     const event = new MouseEvent('click', {
@@ -176,15 +201,20 @@ const simulateClick = (element) => {
 // Function to delay execution
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Create input box and button for testing
+// Create input box and datalist for suggestions
 const inputBox = document.createElement('input');
 inputBox.type = 'text';
 inputBox.placeholder = 'Enter particular';
 inputBox.id = 'particularInput';
+inputBox.setAttribute('list', 'particularSuggestions');
 
-const button = document.createElement('button');
-button.innerText = 'Add';
-button.id = 'addButton';
+const suggestionList = document.createElement('datalist');
+suggestionList.id = 'particularSuggestions';
+
+// Create "Add" button
+const addButton = document.createElement('button');
+addButton.innerText = 'Add';
+addButton.id = 'addButton';
 
 // Style the input box and button
 inputBox.style.position = 'fixed';
@@ -193,22 +223,26 @@ inputBox.style.right = '450px';
 inputBox.style.zIndex = '1000';
 inputBox.style.padding = '5px';
 
-button.style.position = 'fixed';
-button.style.top = '58px';
-button.style.right = '400px';
-button.style.zIndex = '1000';
-button.style.padding = '5px';
+addButton.style.position = 'fixed';
+addButton.style.top = '58px';
+addButton.style.right = '400px';
+addButton.style.zIndex = '1000';
+addButton.style.padding = '5px';
 
-// Append input box and button to the body
+// Append input box, suggestion list, and button to the body
 document.body.appendChild(inputBox);
-document.body.appendChild(button);
+document.body.appendChild(suggestionList);
+document.body.appendChild(addButton);
 
-// Add event listener to button
-button.addEventListener('click', async () => {
-    const particularValue = document.getElementById('particularInput').value;
+// Add event listener to input box for autocomplete
+inputBox.addEventListener('input', handleInputChange);
+
+// Add event listener to "Add" button
+addButton.addEventListener('click', async () => {
+    const particularValue = inputBox.value.trim();
     console.log(`Entered particular: ${particularValue}`);
 
-    const result = data.find(item => item.particular === particularValue);
+    const result = data.find(item => item.particular.toLowerCase() === particularValue.toLowerCase());
 
     if (!result) {
         alert('No matching particular found.');
