@@ -176,7 +176,7 @@ const simulateClick = (element) => {
 // Function to delay execution
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Create input box and button
+// Create input box and button for testing
 const inputBox = document.createElement('input');
 inputBox.type = 'text';
 inputBox.placeholder = 'Enter particular';
@@ -202,7 +202,6 @@ button.style.padding = '5px';
 // Append input box and button to the body
 document.body.appendChild(inputBox);
 document.body.appendChild(button);
-
 
 // Add event listener to button
 button.addEventListener('click', async () => {
@@ -235,11 +234,6 @@ button.addEventListener('click', async () => {
     // Find the newly added row (last row)
     const newRow = rows[rows.length - 1];
     console.log('New Row HTML:', newRow.outerHTML);
-    const enterNMEButton = newRow.querySelector('.enter-nme-button');
-    console.log(enterNMEButton);
-    if (enterNMEButton) {
-        enterNMEButton.click();
-    }
 
     // Handle dropdown selection in the new row
     const chargeHeadDropdown = newRow.querySelector('#categoryLevel1');
@@ -267,28 +261,25 @@ button.addEventListener('click', async () => {
         billForDropdown.disabled = false;
         console.log('Enabled bill for dropdown:', billForDropdown);
     }
-    
 
     // Set the second dropdown value (bill for)
     if (billForDropdown) {
         billForDropdown.value = result.billFor;
         console.log(`Setting bill for dropdown value: ${result.billFor}`);
-        
-        // Enable all input fields and buttons in the new row
-        await delay(2000);
-        
-            // Enable all input fields and buttons in the new row
-    const inputsAndButtons = newRow.querySelectorAll('input, button, .input-group.icon--input.hvr-nme-tooltip');
-    inputsAndButtons.forEach(element => {
-        element.disabled = false;
-    
-    });
-    
-    
+
+        // Dispatch change event on the second dropdown to trigger any associated events
+        billForDropdown.dispatchEvent(new Event('change'));
+
+        // Enable all input fields and buttons in the new row after dropdown selection
+        await delay(1000); // Adjust delay as needed
+
+        const inputsAndButtons = newRow.querySelectorAll('input, button, .input-group.icon--input.hvr-nme-tooltip');
+        inputsAndButtons.forEach(element => {
+            element.disabled = false;
+        });
+
+        console.log('All inputs and buttons enabled in the new row.');
     } else {
         console.log('Bill for dropdown not found in the new row.');
     }
-    
-    
-    
 });
